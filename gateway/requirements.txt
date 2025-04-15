@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+sqlalchemy
+bcrypt
+python-jose[cryptography]
+pydantic
+black
+pydantic[email]
+passlib
+python-multipart
+pytest
+httpx
+pytest-asyncio
+requests

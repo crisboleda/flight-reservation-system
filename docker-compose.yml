@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  users-service:
+    build:
+      context: ./services/users
+    container_name: users-service
+    ports:
+      - "8005:8000"
+    volumes:
+      - ./services/users:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  flights-service:
+    build:
+      context: ./services/flights
+    container_name: flights-service
+    ports:
+      - "8006:8000"
+    volumes:
+      - ./services/flights:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  reservations-service:
+    build:
+      context: ./services/reservations
+    container_name: reservations-service
+    ports:
+      - "8007:8000"
+    volumes:
+      - ./services/reservations:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+  
+  api-gateway:
+    build:
+      context: ./gateway
+    container_name: api-gateway
+    ports:
+      - "8004:8000"
+    volumes:
+      - ./gateway:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload

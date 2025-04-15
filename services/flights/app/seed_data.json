@@ -1,0 +1,30 @@
+{
+    "locations": [
+        { "name": "New York", "code": "JFK" },
+        { "name": "Los Angeles", "code": "LAX" },
+        { "name": "Chicago", "code": "ORD" }
+    ],
+    "aircrafts": [
+        { "model": "Airbus A320", "registration_number": "XA-001", "total_seats": 180 },
+        { "model": "Boeing 737", "registration_number": "XB-002", "total_seats": 160 }
+    ],
+    "flights": [
+        {
+        "origin_code": "JFK",
+        "destination_code": "LAX",
+        "departure_time": "2025-04-20T10:00:00",
+        "arrival_time": "2025-04-20T14:00:00",
+        "price": 250.00,
+        "aircraft_registration": "XA-001"
+        },
+        {
+        "origin_code": "ORD",
+        "destination_code": "LAX",
+        "departure_time": "2025-04-21T08:00:00",
+        "arrival_time": "2025-04-21T12:00:00",
+        "price": 230.00,
+        "aircraft_registration": "XB-002"
+        }
+    ]
+}
+  
