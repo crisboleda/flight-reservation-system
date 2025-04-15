@@ -12,8 +12,8 @@ router = APIRouter()
 
 @router.get("/search", response_model=List[schemas.FlightResponse])
 def search_flights(
-    origin_id: int = Query(None),
-    destination_id: int = Query(None),
+    origin_id: Optional[int] = Query(None),
+    destination_id: Optional[int] = Query(None),
     departure_date: Optional[date] = Query(None),
     db: Session = Depends(get_db),
 ):

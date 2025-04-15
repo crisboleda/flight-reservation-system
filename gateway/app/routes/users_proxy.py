@@ -6,14 +6,14 @@ router = APIRouter()
 
 
 @router.post("/register")
-def register_user(request: Request):
-    body = request.json()
-    response = requests.post(f"{USERS_SERVICE_URL}/register", json=body)
+def register_user(
+    data: dict = {"name": "Example", "email": "user@example.com", "password": "string"}
+):
+    response = requests.post(f"{USERS_SERVICE_URL}/api/users/register", json=data)
     return response.json()
 
 
 @router.post("/login")
-def login_user(request: Request):
-    body = request.json()
-    response = requests.post(f"{USERS_SERVICE_URL}/login", json=body)
+def login_user(data: dict = {"email": "user@example.com", "password": "string"}):
+    response = requests.post(f"{USERS_SERVICE_URL}/api/users/login", json=data)
     return response.json()

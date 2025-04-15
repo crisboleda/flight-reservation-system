@@ -2,6 +2,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from app.seed_loader import load_seed_data
+from app import models
 
 ENV = os.getenv("ENV", "dev")
 
@@ -31,7 +32,8 @@ def get_db():
 
 
 def init_db():
-    Base.metadata.create_all(bind=engine)
+    models.Base.metadata.create_all(bind=engine)
     db = SessionLocal()
-    load_seed_data(db)
+    if ENV != "test":
+        load_seed_data(db)
     db.close()

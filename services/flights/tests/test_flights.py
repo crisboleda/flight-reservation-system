@@ -46,3 +46,26 @@ def test_create_and_get_flight(client, sample_data):
     response = client.get(f"/api/flights/{flight['id']}")
     assert response.status_code == 200
     assert response.json()["id"] == flight["id"]
+
+
+def test_search_flight(client, sample_data):
+    origin_id = sample_data["origin_id"]
+    destination_id = sample_data["destination_id"]
+    departure_time = (datetime.now() + timedelta(days=1)).isoformat()
+
+    flight_data = {
+        "origin_id": origin_id,
+        "destination_id": destination_id,
+        "departure_time": departure_time,
+        "arrival_time": (datetime.now() + timedelta(days=1, hours=5)).isoformat(),
+        "price": 199.99,
+        "aircraft_id": sample_data["aircraft_id"],
+    }
+
+    client.post("/api/flights/", json=flight_data)
+
+    response = client.get(
+        f"/api/flights/search?origin_id={origin_id}&destination_id={destination_id}&departure_time={departure_time}"
+    )
+    assert response.status_code == 200
+    assert len(response.json()) == 1
